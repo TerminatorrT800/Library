@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <dialog>
+        <form action="script.js">
+            <label for="title">Title</label>
+            <input id="title" type="text" required>
+
+            <label for="author"></label>
+            <input id="author" type="text" required>
+
+            <label for="pages"></label>
+            <input id="pages" type="number" required>
+
+            <label for="read"></label>
+            <select name="" id="read" required>
+                <option value="Must read">Must read</option>
+                <option value="Do not read">Do not read</option>
+            </select>
+            <button autofocus type="submit" id="addBTN">Add</button>
+        </form>
+        <button id="closeBTN">Close</button>
+    </dialog>
+    <button>ADD BOOK</button>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>REMOVE</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Pages</th>
+                    <th>Readbility</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
