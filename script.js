@@ -1,4 +1,3 @@
-
 var title = document.querySelector("#title");
 var author = document.querySelector("#author");
 var pages = document.querySelector("#pages");
@@ -15,6 +14,35 @@ function Book(title, author, pages, read) {
 
 };
 
+
+
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector("dialog + button");
+showButton.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+const closeButton = document.querySelector("#closeBTN");
+closeButton.addEventListener('click', () => {
+    dialog.close();
+});
+
+const addButton = document.querySelector("#addBTN");
+addButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    title.required = true;
+    const book1 = new Book(title.value, author.value, pages.value, read.value);
+
+    if (proveraValidnosti()) {
+
+        addBookToLibrary(book1);
+        dialog.close();
+        refreshTable();
+        console.log(myLibrary);
+    }
+});
+
+
 function addBookToLibrary(book) {
     myLibrary.push(book);
 };
@@ -27,18 +55,17 @@ function refreshTable() {
 
         const data = [element.title, element.author, element.pages];
 
-
         const tdRemove = document.createElement("td");
         tdRemove.innerText = "X"
         tdRemove.style.textAlign = "center";
         tdRemove.style.color = "red";
         tdRemove.setAttribute("data", index);
         tdRemove.addEventListener('click', () => {
-            myLibrary.splice(index, 1); 
-            refreshTable(); 
+            myLibrary.splice(index, 1);
+            refreshTable();
         });
         row.appendChild(tdRemove);
-        
+
 
         data.forEach(text => {
             const td = document.createElement('td');
@@ -60,24 +87,14 @@ function refreshTable() {
 };
 
 
-const dialog = document.querySelector("dialog");
-const showButton = document.querySelector("dialog + button");
-showButton.addEventListener("click", () => {
-    dialog.showModal();
-});
+function proveraValidnosti() {
+    title.required = true;
+    author.required = true;
+    pages.required = true;
 
-const closeButton = document.querySelector("#closeBTN");
-closeButton.addEventListener('click', () => {
-    dialog.close();
-});
+    if (!title.checkValidity() || !pages.checkValidity() || !author.checkValidity()) {
+        alert("Popuni obelezenja polja");
 
-const addButton = document.querySelector("#addBTN");
-addButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    const book1 = new Book(title.value, author.value, pages.value, read.value);
-    addBookToLibrary(book1);
-    dialog.close();
-    refreshTable();
-    console.log(myLibrary);
-});
-
+    }
+    else return true;
+}
